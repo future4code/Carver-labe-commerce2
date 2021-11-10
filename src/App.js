@@ -1,49 +1,30 @@
 import React from 'react';
-import styled from 'styled-components'
-import { CardProduto } from './components/CardProduto';
+import styled, { createGlobalStyle } from 'styled-components'
+import Produto from './components/Produto/Produto';
 import FogueteSingle from './img/foguete-single-01-130.jpg';
 
+const GlobalStyle = createGlobalStyle `
+    *{
+        margin: 0;
+        padding: 0;
+    }
+`
 
 const MainContainer = styled.div`
   display: flex;
   align-items: center;
 `
 
-class App extends React.Component{
-  state={
-    produtos:[{
-      id: 1,
-      nome: "Foguete Single",
-      valor: 10000.00,
-      image: "https://picsum.photos/200/200",
-    },
-    {
-      id: 2,
-      nome: "Foguete Single",
-      valor: 10000.00,
-      image: "https://picsum.photos/200/201",
-    }
-  ]
-  }
-  render (){
-    const teste=this.state.produtos.map((produto) =>{
-      return(
-        <CardProduto
-          key={produto.id}  
-          image={produto.image}
-          nome={produto.nome}
-          valor={produto.valor}
-        />
-      )
-    })
+function App () {
     return (
-      <MainContainer>{
-        teste
-        }
-      </MainContainer>
+      <div>
+        <GlobalStyle />
+        <MainContainer>
+          <Produto />
+        </MainContainer>
+      </div>
     );
-  } 
+  
 }
-
 
 export default App;
