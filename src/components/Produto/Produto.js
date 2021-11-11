@@ -1,3 +1,5 @@
+import React from 'react';
+import CardProduto from './CardProduto'
 import FogueteSingle from './img/01_foguete_single.jpg'
 import FogueteDoble from './img/02_foguete_doble.jpg'
 import FogueteJunior from './img/03_foguete_junior.jpeg'
@@ -10,8 +12,17 @@ import CapsulaMini from './img/09_capsula_mini.jpg'
 import ComboFoguete from './img/10_combo_foguete.jpg'
 import ComboOnibus from './img/11_combo_netuno.png'
 import SuperComboVariado from './img/12_super_combo_variado.jpg'
+import styled from 'styled-components';
 
-export const produtos = [
+const TelaProdutos = styled.div `
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat()(4, 1fr);
+`
+
+export default class Produto extends React.Component {
+    state={
+        produtos:[
             {
                 id: 1,
                 nome: "Foguete Single",
@@ -84,4 +95,25 @@ export const produtos = [
                 valor: 100500500.00,
                 image: SuperComboVariado,
             }
-];
+      ]
+    }
+
+    render() {
+        const teste = this.state.produtos.map((produto) => {
+            return(
+                <CardProduto
+                   key={produto.id}  
+                   image={produto.image}              
+                   nome={produto.nome}   
+                   valor={produto.valor}
+                   acrescentarProdutoCarrinho = {() => this.acrescentarProdutoCarrinho(produto.id)}
+                />
+            )
+        })
+        return(
+            <TelaProdutos>
+                { teste }
+              </TelaProdutos> 
+        )
+    }
+}
