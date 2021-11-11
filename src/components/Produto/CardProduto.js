@@ -6,16 +6,18 @@ const ProductContainer = styled.div`
 	flex-direction: column;
 `
 const ProductImage = styled.img`
-	margin-right: 5px;
+	margin: 5px;
+	padding: 5px;
+	width: 150px;
 `
 
-export function CardProduto(props) {
+export default function CardProduto(props) {
 	return (
 		<ProductContainer>
 			<ProductImage alt={'Foto do produto'} src={props.image} />
 			<p>{props.nome}</p>
             <p>{props.valor}</p>
-            <button>Clique aqui</button>
+            <button>Adicionar ao Carrinho</button>
 		</ProductContainer>
 	)
 }

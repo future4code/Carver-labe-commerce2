@@ -1,12 +1,14 @@
 import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components'
 import Produto from './components/Produto/Produto';
-import FogueteSingle from './img/foguete-single-01-130.jpg';
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
 
 const GlobalStyle = createGlobalStyle `
     *{
-        margin: 0;
-        padding: 0;
+      margin: 0;
+      padding: 0;
+      font-family: 'Sitka', sans-serif;
     }
 `
 
@@ -19,9 +21,11 @@ function App () {
     return (
       <div>
         <GlobalStyle />
+        <Header/>
         <MainContainer>
           <Produto />
         </MainContainer>
+        <Footer/>
       </div>
     );
   
