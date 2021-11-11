@@ -1,8 +1,8 @@
 import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components'
-import { produtos } from './components/Produto/Produto';
+import Produto from './components/Produto/Produto';
 import Carrinho from './components/Carrinho/Carrinho';
-import CardProduto from './components/Produto/CardProduto';
+// import CardProduto from './components/Produto/CardProduto';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 
@@ -20,18 +20,33 @@ const MainContainer = styled.div`
 
 `
 
-const AreaProdutos = styled.div `
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat()(4, 1fr);
-`
-
 export default class App extends React.Component{
   state = {
     carrinho: [],
-    produtos: produtos,
-    listaProdutos: true
+    listaProdutos: true,
+    paginas: "home"
   }
+
+  renderizaPaginas = () => {
+    switch(this.state.paginas) {
+      case "home":
+        return <Produto />;
+      case "carrinho":
+        return <Carrinho produtosCarrinho={this.state.carrinho} />;
+      default:
+        return <Produto />
+    }
+  }
+
+  paginaCarrinho = () => {
+    this.setState({pagina: "carrinho"})
+  }
+
+  paginaProdutos = () => {
+    this.setState({pagina: "home"})
+  }
+
+  
 
   acrescentarProdutoCarrinho = (produto) => {
     const carrinhoAtual = [...this.state.carrinho]
@@ -50,32 +65,14 @@ export default class App extends React.Component{
     }
   }
 
-  paginaCarrinho = () => {
-    this.setState({ listaProdutos: !this.state.listaProdutos })
-  }
-
   render() {
-    const teste = this.state.produtos.map((produto) => {
-          return(
-              <CardProduto
-                 key={produto.id}  
-                 image={produto.image}              
-                 nome={produto.nome}   
-                 valor={produto.valor}
-                 acrescentarProdutoCarrinho ={() => this.acrescentarProdutoCarrinho(produto.id)}
-              />
-            
-          )
-    });
 
     return (
       <div>
         <GlobalStyle />
         <Header/>
         <MainContainer>
-          <AreaProdutos>
-            { teste }
-          </AreaProdutos> 
+          <Produto />
           <Carrinho />
         </MainContainer>
         <Footer/>

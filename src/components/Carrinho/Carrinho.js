@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 export default class Carrinho extends React.Component {
     valorTotalProduto = (preco, quantidade) => {
         const total = (preco * quantidade);
@@ -16,38 +17,36 @@ export default class Carrinho extends React.Component {
  
     render() {
 
-        // const produtosNoCarrinho = this.props.carrinho.map((produto) => {
-        //     return (
-        //         <div key={produto.id}>
-        //             <img src={produto.image} alt="Nave"/>
-        //         </div>
-        //     )
-        // })
+        const produtosNoCarrinho = this.props.produtosCarrinho && this.props.produtosCarrinho.map((produto) => {
+            return (
+                <div key={produto.id}>
+                    <img src={produto.image} alt="Nave"/>
+                </div>
+            )
+        })
 
-        // const areaCarrinho  = this.props.carrinho.length;
+        if (this.props.produtosCarrinho && this.props.produtosCarrinho.length > 0) {
+            return (
+                <div>
+                    <div>
+                        <h1>Itens Adicionados</h1>
+                    </div>
+                    {produtosNoCarrinho}
+                </div>
+            );    
+        }else {
+            return (
+                <div>
+                    <h2>Carrinho Vazio</h2>
+                </div>
+            )   
+        }
 
-        // if (areaCarrinho > 0) {
-        //     return (
-        //         <div>
-        //             <div>
-        //                 <h1>Itens Adicionados</h1>
-        //             </div>
-        //             {produtosNoCarrinho}
-        //         </div>
-        //     );    
-        // }else {
-        //     return (
-        //         <div>
-        //             <h2>Carrinho Vazio</h2>
-        //         </div>
-        //     )   
-        // }
-
-        return (
-            <div>
-                <h2>Carrinho Vazio</h2>
-            </div>
-        )
+        // return (
+        //     <div>
+        //         <h2>Carrinho Vazio</h2>
+        //     </div>
+        // )
 
     }
 }

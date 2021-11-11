@@ -15,13 +15,16 @@ const ProductImage = styled.img`
 	width: 150px;
 `
 
-export default function CardProduto(props) {
-	return (
-		<ProductContainer>
-			<ProductImage alt={'Foto do produto'} src={props.image} />
-			<p>{props.nome}</p>
-            <p>¢ {props.valor}</p>
-            <button onClick={props.acrescentarProdutoCarrinho}>Adicionar ao Carrinho</button>
-		</ProductContainer>
-	)
+export default class CardProduto extends React.PureComponent {
+	render() {
+		return (
+			<ProductContainer>
+				<ProductImage alt={'Foto do produto'} src={this.props.image} />
+				<p>{this.props.nome}</p>
+				<p>¢ {this.props.valor}</p>
+				<button onClick={this.props.acrescentarProdutoCarrinho}>Adicionar ao Carrinho</button>
+			</ProductContainer>
+		)
+	}
+	
 }
