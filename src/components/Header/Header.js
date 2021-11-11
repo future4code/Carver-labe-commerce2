@@ -14,10 +14,12 @@ const HeaderContainer = styled.div`
     font-weight: bold;
 `
 export default class Header extends React.Component {
+
     render() {
         return (
             <HeaderContainer>
-                <p><em>AstroRockets - To the moon and back</em></p>
+                <p><em> <span>AstroRockets</span> - To the moon and back</em></p>
+                <h4>Carrinho</h4>
             </HeaderContainer>
         )
     }
