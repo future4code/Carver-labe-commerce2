@@ -21,8 +21,6 @@ export default class Carrinho extends React.Component {
     return (this.valorTotalCarrinho(this.props.carrinho)/15).toFixed(2)
   }
 
-  
-
   render() {
     const produtosNoCarrinho = this.props.carrinho.map((produto) => {
         return (
