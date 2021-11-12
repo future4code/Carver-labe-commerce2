@@ -34,24 +34,12 @@ export default class App extends React.Component{
     pagina: true
   }
 
-  // renderizaPaginas = () => {
-  //   switch(this.state.paginas) {
-  //     case "home":
-  //       return <Produto />;
-  //     case "carrinho":
-  //       return <Carrinho produtosCarrinho={this.state.carrinho} />;
-  //     default:
-  //       return <Produto />
-  //   }
-  // }
-
   // Funções para trocar de página 
   paginaCarrinho = () => {
     this.setState({pagina: !this.state.pagina})
   }
 
-
-  //Funções para adionar e removar produtos do carrinho
+  //Funções para adicionar e removar produtos do carrinho
   adicionarProduto = (id) => {
     const itemCarrinho = this.state.carrinho.find((produto) => id === produto.id);
     if(itemCarrinho) {
@@ -110,6 +98,14 @@ export default class App extends React.Component{
     this.setState({ carrinho: carrinhoAtual })
   }
 
+  totalItens = () => {
+    return this.state.carrinho.reduce((total, item) => total + item.quantidade, 0)
+  }
+
+  limparCarrinho = () => {
+    this.setState({carrinho: []})
+  }
+
   render() {
     //Renderização dos produtos na tela principal
     const teste = this.state.produtos.map((produto) => {
@@ -131,7 +127,9 @@ export default class App extends React.Component{
         <div>
           <GlobalStyle />
           <Header
+            paginaProdutos = { this.state.pagina }
             paginaCarrinho = { this.paginaCarrinho }
+            totalItens={this.totalItens}
           />
           <div>
             {Filtros(this.props)}
@@ -148,7 +146,9 @@ export default class App extends React.Component{
         <div>
           <GlobalStyle />
           <Header
+            paginaProdutos = { this.state.pagina }
             paginaCarrinho = { this.paginaCarrinho }
+            totalItens={this.totalItens}
           />
           <MainContainer>
             <Carrinho 
@@ -156,8 +156,10 @@ export default class App extends React.Component{
               removerProduto = {this.removerProduto}
               adicionarQuantidade={this.adicionarQuantidade}
               diminuirQuantidade={this.diminuirQuantidade}
+              limparCarrinho={this.limparCarrinho}
+              paginaCarrinho = {this.paginaCarrinho}
+              totalItens={this.totalItens}
             />
-            
           </MainContainer>
           <Footer/>
         </div>
