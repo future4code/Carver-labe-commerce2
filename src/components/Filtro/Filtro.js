@@ -1,7 +1,29 @@
 import React from 'react';
-import Produto from '../Produto/Produto';
 import styled from 'styled-components';
-import teste from "./components/Produto/Produto.js"
+import { produtos } from '../Produto/Produto';
+import CardProduto from '../Produto/CardProduto';
+
+export const BarraFiltros = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-self: center;
+    width: 90vw;
+
+`
+
+
+const ListaDeProdutos = produtos.map((produto) => {
+        return(
+            <CardProduto
+               key={produto.id}  
+               image={produto.image}              
+               nome={produto.nome}   
+               valor={produto.valor}
+               adicionarProduto = {() => this.adicionarProduto(produto.id)}
+            />
+        )}
+)
 
 export function Filtros(props) {
     return <div>
@@ -45,7 +67,7 @@ export function Filtros(props) {
 
 export class Filtro extends React.Component {
     state = {
-        produtos: teste,
+        produtos: ListaDeProdutos,
         query: "",
         precoMinimo: "",
         precoMaximo: "",
@@ -96,15 +118,15 @@ export class Filtro extends React.Component {
                 order={this.state.order}
                 </Filtros>
                 <div>
-                    {this.state.produtos
-                    .filter(Produto => {
-                        return Produto.nome.toLowerCase().includes(this.state.query.toLowerCase())
+                    {this.state.produto
+                    .filter(produto => {
+                        return produto.nome.toLowerCase().includes(this.state.query.toLowerCase())
                     })
-                    .filter(Produto => {
-                        return this.state.precoMinimo === "" || Produto.valor >= this.state.precoMinimo
+                    .filter(produto => {
+                        return this.state.precoMinimo === "" || produto.valor >= this.state.precoMinimo
                     })
-                    .filter(Produto => {
-                        return this.state.precoMaximo === "" || Produto.valor <= this.state.precoMaximo
+                    .filter(produto => {
+                        return this.state.precoMaximo === "" || produto.valor <= this.state.precoMaximo
                     })
                     .sort((a,b) => {
                         switch (this.state.sortingParameter) {

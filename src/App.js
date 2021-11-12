@@ -5,6 +5,8 @@ import Carrinho from './components/Carrinho/Carrinho';
 import CardProduto from './components/Produto/CardProduto';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
+import { Filtros } from './components/Filtro/Filtro';
+import BarraFiltros from './components/Filtro/Filtro'
 
 const GlobalStyle = createGlobalStyle `
     *{
@@ -131,6 +133,9 @@ export default class App extends React.Component{
           <Header
             paginaCarrinho = { this.paginaCarrinho }
           />
+          <div>
+            {Filtros(this.props)}
+          </div>
             <TelaProdutos>
               { teste }
             </TelaProdutos>
