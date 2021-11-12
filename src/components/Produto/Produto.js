@@ -9,7 +9,7 @@ import OnibusNetuno from "./img/08_onibus_esp_netuno.png";
 import CapsulaMini from "./img/09_capsula_mini.jpg";
 import ComboFoguete from "./img/10_combo_foguete.jpg";
 import ComboOnibus from "./img/11_combo_netuno.png";
-import SuperComboVariado from "./img/12_super_combo_variado.jpg";
+import ComboSuperFamily from "./img/12_combo_super_family.jpg";
 
 export const produtos = [
   {
@@ -80,8 +80,8 @@ export const produtos = [
   },
   {
     id: 12,
-    nome: "Super Combo Veicular",
+    nome: "Combo Super Family",
     valor: 100500500.0,
-    image: SuperComboVariado,
+    image: ComboSuperFamily,
   },
 ];
