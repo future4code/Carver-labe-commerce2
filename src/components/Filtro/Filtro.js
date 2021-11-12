@@ -49,7 +49,7 @@ export class Filtro extends React.Component {
         query: "",
         precoMinimo: "",
         precoMaximo: "",
-        sortingParameter: "nome",
+        sortingParameter: "crescente",
         order: 1
     }
     
