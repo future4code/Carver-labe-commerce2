@@ -36,7 +36,7 @@ export function Filtros(props) {
                 <option value={1}>Preço - Crescente</option>
                 <option value={-1}>Preço - Decrescente</option> 
             </select>
-
+        </span>
     
     </div>
     
@@ -49,7 +49,7 @@ export class Filtro extends React.Component {
         query: "",
         precoMinimo: "",
         precoMaximo: "",
-        sortingParameter: "nome",
+        sortingParameter: "crescente",
         order: 1
     }
     
