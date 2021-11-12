@@ -12,6 +12,14 @@ const HeaderContainer = styled.div`
     top: 0;
     color: rgb(11, 12, 59);
     font-weight: bold;
+    display: flex;
+    justify-content: space-around;
+
+    h4, p {
+        :hover {
+            cursor: pointer
+        }
+    }
 `
 export default class Header extends React.Component {
 
@@ -19,7 +27,7 @@ export default class Header extends React.Component {
         return (
             <HeaderContainer>
                 <p><em> <span>AstroRockets</span> - To the moon and back</em></p>
-                <h4>Carrinho</h4>
+                <h4 onClick={this.props.paginaCarrinho}>Carrinho</h4>
             </HeaderContainer>
         )
     }

@@ -9,79 +9,80 @@ import OnibusNetuno from "./img/08_onibus_esp_netuno.png";
 import CapsulaMini from "./img/09_capsula_mini.jpg";
 import ComboFoguete from "./img/10_combo_foguete.jpg";
 import ComboOnibus from "./img/11_combo_netuno.png";
-import SuperComboVariado from "./img/12_super_combo_variado.jpg";
+import ComboSuperFamily from "./img/12_combo_super_family.jpg";
 
 export const produtos = [
   {
     id: 1,
     nome: "Foguete Single",
-    valor: 48650.99,
+    valor: (48650.99).toFixed(2),
     image: FogueteSingle,
   },
   {
     id: 2,
     nome: "Foguete Doble",
-    valor: 65550.99,
+    valor: (65550.99).toFixed(2),
     image: FogueteDoble,
   },
   {
     id: 3,
     nome: "Foguete Junior",
-    valor: 75650.99,
+    valor: (75650.99).toFixed(2),
     image: FogueteJunior,
   },
   {
     id: 4,
     nome: "Foguete Blaster",
-    valor: 80650.99,
+    valor: (80650.99).toFixed(2),
     image: FogueteBlaster,
   },
   {
     id: 5,
     nome: "Nave Classic",
-    valor: 100000.0,
+    valor: (100000.0).toFixed(2),
     image: NaveClassic,
   },
   {
     id: 6,
     nome: "Nave Megalodon",
-    valor: 700000.0,
+    valor: (700000.0).toFixed(2),
     image: NaveMegalodon,
   },
   {
     id: 7,
     nome: "Ônibus Espacial Pluto",
-    valor: 200000.0,
+    valor: (200000.0).toFixed(2),
     image: OnibusPluto,
   },
   {
     id: 8,
     nome: "Onibus Espacial Netuno",
-    valor: 350000.0,
+    valor: (350000.0).toFixed(2),
     image: OnibusNetuno,
   },
   {
     id: 9,
     nome: "Cápsula Mini",
-    valor: 150000.0,
+    valor: (150000.0).toFixed(2),
     image: CapsulaMini,
   },
   {
     id: 10,
     nome: "Combo de Foguetes",
-    valor: 125000.0,
+    valor: (125000.0).toFixed(2),
     image: ComboFoguete,
   },
   {
     id: 11,
     nome: "Combo Netuno",
-    valor: 600000.0,
+    valor: (600000.0).toFixed(2),
     image: ComboOnibus,
   },
   {
     id: 12,
-    nome: "Super Combo Veicular",
-    valor: 100500500.0,
-    image: SuperComboVariado,
+    nome: "Combo Super Family",
+    valor: (100500500.0).toFixed(2),
+    image: ComboSuperFamily,
+
   },
 ];

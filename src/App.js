@@ -16,7 +16,7 @@ const GlobalStyle = createGlobalStyle `
 
 const MainContainer = styled.div`
   display: grid;
-  grid-template-columns: 6fr 1fr;
+  grid-template-columns: 5fr 2fr;
 
 `
 const TelaProdutos = styled.div `
@@ -29,7 +29,7 @@ export default class App extends React.Component{
   state = {
     carrinho: [],
     produtos: produtos,
-    paginas: true
+    pagina: true
   }
 
   // renderizaPaginas = () => {
@@ -43,14 +43,13 @@ export default class App extends React.Component{
   //   }
   // }
 
+  // Funções para trocar de página 
   paginaCarrinho = () => {
-    this.setState({pagina: false})
+    this.setState({pagina: !this.state.pagina})
   }
 
-  paginaProdutos = () => {
-    this.setState({pagina: true})
-  }
 
+  //Funções para adionar e removar produtos do carrinho
   adicionarProduto = (id) => {
     const itemCarrinho = this.state.carrinho.find((produto) => id === produto.id);
     if(itemCarrinho) {
@@ -74,8 +73,43 @@ export default class App extends React.Component{
     }
   }
 
-  render() {
+  removerProduto = (id) => {
+    const retirarItem = [...this.state.carrinho];
+    const item = retirarItem.filter((produto) => {
+      return produto.id !== id;
+    })
+    this.setState({carrinho: item})
+  }
 
+  // Funções para aumentar ou diminuir a quantidade de produtos no carrinho
+  adicionarQuantidade = (item) => {
+    const carrinhoAtual = this.state.carrinho.map((produto) =>  {
+      if(item.id === produto.id) {
+        return {
+          ...item, 
+          quantidade: produto.quantidade + 1
+        }  
+      }
+      return produto;
+    })
+    this.setState({ carrinho: carrinhoAtual })
+  }
+
+  diminuirQuantidade = (item) => {
+    const carrinhoAtual = this.state.carrinho.map((produto) =>  {
+      if(item.id === produto.id && produto.quantidade > 1) {
+        return {
+          ...item, 
+          quantidade: produto.quantidade - 1
+        }  
+      }
+      return produto;
+    })
+    this.setState({ carrinho: carrinhoAtual })
+  }
+
+  render() {
+    //Renderização dos produtos na tela principal
     const teste = this.state.produtos.map((produto) => {
       return(
           <CardProduto
@@ -85,21 +119,44 @@ export default class App extends React.Component{
              valor={produto.valor}
              adicionarProduto = {() => this.adicionarProduto(produto.id)}
           />
+          
       )
-  })
+    })
 
-    return (
-      <div>
-        <GlobalStyle />
-        <Header/>
-        <MainContainer>
-          <TelaProdutos>
-            { teste }
-          </TelaProdutos>
-          <Carrinho />
-        </MainContainer>
-        <Footer/>
-      </div>
-    );
+    //Retorno das telas
+    if(this.state.pagina) {
+      return (
+        <div>
+          <GlobalStyle />
+          <Header
+            paginaCarrinho = { this.paginaCarrinho }
+          />
+            <TelaProdutos>
+              { teste }
+            </TelaProdutos>
+          <Footer/>
+        </div>
+      )  
+    }
+    else {
+      return (
+        <div>
+          <GlobalStyle />
+          <Header
+            paginaCarrinho = { this.paginaCarrinho }
+          />
+          <MainContainer>
+            <Carrinho 
+              carrinho={this.state.carrinho} 
+              removerProduto = {this.removerProduto}
+              adicionarQuantidade={this.adicionarQuantidade}
+              diminuirQuantidade={this.diminuirQuantidade}
+            />
+            
+          </MainContainer>
+          <Footer/>
+        </div>
+      ) 
+    }
   }
 }
