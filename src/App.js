@@ -152,6 +152,7 @@ export default class App extends React.Component{
               adicionarQuantidade={this.adicionarQuantidade}
               diminuirQuantidade={this.diminuirQuantidade}
             />
+            
           </MainContainer>
           <Footer/>
         </div>
