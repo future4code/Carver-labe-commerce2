@@ -1,14 +1,14 @@
 import FogueteSingle from "./img/01_foguete_single.jpg";
 import FogueteDoble from "./img/02_foguete_doble.jpg";
-import FogueteJunior from "./img/03_foguete_junior.jpeg";
+import FogueteJunior from "./img/03_foguete_junior.jpg";
 import FogueteBlaster from "./img/04_foguete_blaster.jpg";
-import NaveClassic from "./img/05_nave_classic.png";
+import NaveClassic from "./img/05_nave_classic.jpg";
 import NaveMegalodon from "./img/06_nave_megalodon.jpg";
-import OnibusPluto from "./img/07_onibus_esp_pluto.png";
-import OnibusNetuno from "./img/08_onibus_esp_netuno.png";
+import OnibusPluto from "./img/07_onibus_esp_pluto.jpg";
+import OnibusNetuno from "./img/08_onibus_esp_netuno.jpg";
 import CapsulaMini from "./img/09_capsula_mini.jpg";
 import ComboFoguete from "./img/10_combo_foguete.jpg";
-import ComboOnibus from "./img/11_combo_netuno.png";
+import ComboOnibus from "./img/11_combo_netuno.jpg";
 import ComboSuperFamily from "./img/12_combo_super_family.jpg";
 
 export const produtos = [
