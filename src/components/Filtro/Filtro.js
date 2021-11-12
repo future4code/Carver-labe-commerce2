@@ -36,7 +36,7 @@ export function Filtros(props) {
                 <option value={1}>Preço - Crescente</option>
                 <option value={-1}>Preço - Decrescente</option> 
             </select>
-
+        </span>
     
     </div>
     
