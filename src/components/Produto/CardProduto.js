@@ -4,9 +4,10 @@ import styled from "styled-components";
 const ProductContainer = styled.div`
   display: flex;
   flex-direction: column;
+  margin: 1rem;
 
   button {
-    width: 25%;
+    width: 35%;
   }
 `;
 const ProductImage = styled.img`
@@ -22,7 +23,7 @@ export default class CardProduto extends React.Component {
         <ProductImage alt={"Foto do produto"} src={this.props.image} />
         <p>{this.props.nome}</p>
         <p>¢ {this.props.valor}</p>
-        <button onClick={this.props.adicionarProduto}>
+        <button onClick={this.props.adicionarProduto} key={this.props.id}>
           Adicionar ao Carrinho
         </button>
       </ProductContainer>
