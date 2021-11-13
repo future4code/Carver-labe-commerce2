@@ -6,10 +6,11 @@ import CardProduto from '../Produto/CardProduto';
 export const BarraFiltros = styled.div`
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-self: center;
     width: 90vw;
-
+    margin-top: 100px;
+    border-color: blue;
 `
 
 

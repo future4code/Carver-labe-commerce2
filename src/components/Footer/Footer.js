@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const FooterContainer = styled.div`
-    background: rgb(255, 238, 0);
+    background: #F0A500;
     padding-top: 0.5%;
     padding-right: 3%;
     padding-bottom: 0.5%;
@@ -10,7 +10,7 @@ const FooterContainer = styled.div`
     text-align: left;
     position: sticky;
     top: 0;
-    color: rgb(11, 12, 59);
+    color: #082032;
     font-weight: bold;
 
 `
@@ -20,6 +20,7 @@ export default class Footer extends React.Component {
         return (
             <FooterContainer>
                 <p>Siga a nossas redes sociais!</p>
+                
             </FooterContainer>
         )
     }
