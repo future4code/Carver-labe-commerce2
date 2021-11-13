@@ -18,16 +18,11 @@ const GlobalStyle = createGlobalStyle `
       color: #082032;
     }
 `
-const MainContainer = styled.div`
-  display: grid;
-  grid-template-columns: 5fr 2fr;
-  align-items: center;
 
-`
 const TelaProdutos = styled.div `
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
 `
 
 export default class App extends React.Component{
@@ -36,6 +31,17 @@ export default class App extends React.Component{
     produtos: produtos,
     pagina: true
   }
+
+  componentDidUpdate() {
+    localStorage.setItem("carrinho", JSON.stringify(this.state.carrinho));
+  };
+
+  componentDidMount() {
+    const modificarCarrinho = localStorage.getItem("carrinho");
+    if(modificarCarrinho) {
+      this.setState({ carrinho: JSON.parse(modificarCarrinho)})
+    }
+  };
 
   // Funções para trocar de página 
   paginaCarrinho = () => {
@@ -157,7 +163,6 @@ export default class App extends React.Component{
             paginaCarrinho = { this.paginaCarrinho }
             totalItens={this.totalItens}
           />
-          <MainContainer>
             <Carrinho 
               carrinho={this.state.carrinho} 
               removerProduto = {this.removerProduto}
@@ -167,7 +172,6 @@ export default class App extends React.Component{
               paginaCarrinho = {this.paginaCarrinho}
               totalItens={this.totalItens}
             />
-          </MainContainer>
           <Footer/>
         </div>
       ) 
