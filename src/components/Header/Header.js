@@ -4,23 +4,24 @@ import Carrinho from "../../icones/shopping_cart_black_24dp.svg";
 import Usuario from "../../icones/user.svg";
 
 const HeaderContainer = styled.div`
-    background: rgb(255, 238, 0);
+    background-color: #F0A500;
     padding-top: 0.5%;
     padding-right: 3%;
     padding-bottom: 0.5%;
-    padding-left: 0.5%;
+    padding-left: 2%;
     text-align: left;
     position: sticky;
     top: 0;
-    color: rgb(11, 12, 59);
+    color: #082032;
     font-weight: bold;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: ;
 
     h4, p, img {
         :hover {
-            cursor: pointer
+            cursor: pointer;
         }
     }
 `

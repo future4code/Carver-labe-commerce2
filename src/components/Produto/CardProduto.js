@@ -2,12 +2,17 @@ import React from "react";
 import styled from "styled-components";
 
 const ProductContainer = styled.div`
-  display: flex;
+  justify-content: center;
   flex-direction: column;
-  margin: 1rem;
+  margin: 5% 18%;
+  box-shadow: 2px 2px 5px gray;
+  padding: 1rem;
+  max-width: 200px;
+  background: transparent;
 
   button {
-    width: 35%;
+    width: 85%;
+    position: center;
   }
 `;
 const ProductImage = styled.img`
@@ -21,8 +26,9 @@ export default class CardProduto extends React.Component {
     return (
       <ProductContainer>
         <ProductImage alt={"Foto do produto"} src={this.props.image} />
+        <h1>¢ {this.props.valor}</h1>
         <p>{this.props.nome}</p>
-        <p>¢ {this.props.valor}</p>
+        <p>{this.props.descricao}</p>
         <button onClick={this.props.adicionarProduto} key={this.props.id}>
           Adicionar ao Carrinho
         </button>

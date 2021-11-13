@@ -23,20 +23,17 @@ export default class Carrinho extends React.Component {
 
   render() {
     const produtosNoCarrinho = this.props.carrinho.map((produto) => {
-        return (
-          <CardCompra key={produto.id}>
-            <DescricaoProduto>
-              <img src={produto.image} alt={produto.nome} />
-              <p>{produto.nome}</p>
-              <BotaoDeletar src={ Remover } alt="Botão de remover produto" onClick={() => this.props.removerProduto(produto.id)} />
+      return (
+        <CardCompra key={produto.id}>
+          <DescricaoProduto>
+            <img src={produto.image} alt={produto.nome} />
+            <p>{produto.nome}</p>
+            <BotaoDeletar src={ Remover } alt="Botão de remover produto" onClick={() => this.props.removerProduto(produto.id)} />
             </DescricaoProduto>
             <div></div>
             <div>
               <AreaQuantidade>
-                <p>Quantidade:</p>
-                <button onClick={() => this.props.diminuirQuantidade(produto)}>-</button>
-                <p>{produto.quantidade}</p>
-                <button onClick={() => this.props.adicionarQuantidade(produto)}>+</button>
+                <p>Quantidade: <button onClick={() => this.props.diminuirQuantidade(produto)}> - </button>  {produto.quantidade}  <button onClick={() => this.props.adicionarQuantidade(produto)}> + </button> </p>
               </AreaQuantidade>
               <p>¢ {this.valorTotalProduto(produto.valor, produto.quantidade)}</p>
             </div>
@@ -46,28 +43,30 @@ export default class Carrinho extends React.Component {
 
       const resumoCompra = 
       <div>
-        <h2>Resumo da compra</h2>
+        <h1>SUA COMPRA</h1>
         <div>
           <div>
-            <h4>Total de Itens</h4>
-            <span>{this.props.totalItens(this.props.carrinho)}</span>
+            <h2>★ Você escolheu:</h2>
+            <span> {this.props.totalItens(this.props.carrinho)} item(s) </span>
           </div>
           <div>
-            <h4>Subtotal</h4>
+            <h2>★ Subtotal:</h2>
             <p>¢ {this.valorTotalCarrinho(this.props.carrinho)}</p>
           </div>
-          <h4>Frete</h4>
-          <p>GRÁTIS</p>
+          <h2>★ Frete:</h2>
+          <h3>GRÁTIS</h3>
           <div>
-            <h2>Total</h2>
-            <p>¢ {this.valorTotalCarrinho(this.props.carrinho)}</p>
+            <h1>★ Total:</h1>
+            <h2>¢ {this.valorTotalCarrinho(this.props.carrinho)}</h2>
           </div>
           <div>
-            <p>Utilize o F4Card e pague ¢ {this.valorTotalCarrinho(this.props.carrinho)} em até 15x de ¢ {this.ofertaCompra()} sem juros</p>
+            <p>Utilize o LabeCard e pague em</p>
+            <p>até 15x de ¢ {this.ofertaCompra()}</p>
+            <p>SEM JUROS!</p>
           </div>
           <div>
-            <button>FINALIZAR PEDIDO</button>
-            <button onClick={this.props.paginaCarrinho}>ESCOLHER MAIS PRODUTOS</button>
+            <button>FINALIZAR COMPRA</button>
+            <button onClick={this.props.paginaCarrinho}>QUERO MAIS PRODUTOS</button>
           </div>
         </div>
       </div>
@@ -85,7 +84,7 @@ export default class Carrinho extends React.Component {
           <PaginaCarrinho>
             <div>
               <div>
-                <h2>Meu Carrinho</h2>
+                <h2>★ CARRINHO</h2>
               </div> 
               {produtosNoCarrinho}
               <div>

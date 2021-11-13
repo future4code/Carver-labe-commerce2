@@ -6,19 +6,22 @@ import CardProduto from './components/Produto/CardProduto';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import { Filtros } from './components/Filtro/Filtro';
-import BarraFiltros from './components/Filtro/Filtro'
+import BarraFiltros from './components/Filtro/Filtro';
+
+
 
 const GlobalStyle = createGlobalStyle `
     *{
       margin: 0;
       padding: 0;
-      font-family: 'Sitka', sans-serif;
+      font-family: 'Franklin Gothic Medium', sans-serif;
+      color: #082032;
     }
 `
-
 const MainContainer = styled.div`
   display: grid;
   grid-template-columns: 5fr 2fr;
+  align-items: center;
 
 `
 const TelaProdutos = styled.div `
@@ -109,14 +112,18 @@ export default class App extends React.Component{
   render() {
     //Renderização dos produtos na tela principal
     const teste = this.state.produtos.map((produto) => {
-      return(
+      return(  
+        <div>
+          
           <CardProduto
-             key={produto.id}  
-             image={produto.image}              
-             nome={produto.nome}   
-             valor={produto.valor}
-             adicionarProduto = {() => this.adicionarProduto(produto.id)}
+          key={produto.id}  
+          image={produto.image}              
+          nome={produto.nome}
+          valor={produto.valor}
+          adicionarProduto = {() => this.adicionarProduto(produto.id)}
           />
+        </div>
+        
           
       )
     })
