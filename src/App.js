@@ -158,18 +158,18 @@ export default class App extends React.Component {
   render() {
     //Renderização dos produtos na tela principal
     const exibirProdutos = this.state.produtos
-      .filter((produto) => {
+      .filter(produto => {
         return produto.nome
           .toLowerCase()
           .includes(this.state.query.toLowerCase());
       })
-      .filter((produto) => {
+      .filter(produto => {
         return (
           this.state.precoMinimo === "" ||
           produto.valor >= this.state.precoMinimo
         );
       })
-      .filter((produto) => {
+      .filter(produto => {
         return (
           this.state.precoMaximo === "" ||
           produto.valor <= this.state.precoMaximo

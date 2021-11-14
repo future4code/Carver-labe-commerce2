@@ -12,23 +12,24 @@ export const BarraFiltros = styled.div`
 `
 
 
-export default class Filtro extends React.Component {
+/*export default class Filtro extends React.Component {
     
-     render() {
+     render() {*/
+        export default function Filters(props) {
         return (
             <div>
         <input
             type="number"
             placeholder="Preço mínimo"
-            value={this.props.precoMinimo}
-            onChange={this.props.onchangePrecoMinimo}
+            value={props.precoMinimo}
+            onChange={props.onchangePrecoMinimo}
             />
 
         <input
             type="number"
             placeholder="Preço máximo"
-            value={this.props.precoMaximo}
-            onChange={this.props.onchangePrecoMaximo}
+            value={props.precoMaximo}
+            onChange={props.onchangePrecoMaximo}
             />
 
         <span>
@@ -36,8 +37,8 @@ export default class Filtro extends React.Component {
             <select
             
             name="order"
-            value={this.props.order}
-            onChange={this.props.onchangeOrder}
+            value={props.order}
+            onChange={props.onchangeOrder}
             >
                 <option value={1}>Preço - Crescente</option>
                 <option value={-1}>Preço - Decrescente</option> 
@@ -46,5 +47,4 @@ export default class Filtro extends React.Component {
             </div>
         )
     }
-}
 
