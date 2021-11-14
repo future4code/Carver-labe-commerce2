@@ -54,6 +54,11 @@ export default class Header extends React.Component {
             return (
                 <HeaderContainer>
                     <p><em>AstroRockets - To the moon and back</em></p>
+                    <input
+                        placeholder="Busca por nome"
+                        value={this.props.query}
+                        onChange={this.props.onchangeQuery}
+                    />
                     <div>
                         <TotalItens>{this.props.totalItens()}</TotalItens>
                         <img src={ Carrinho } onClick={this.props.paginaCarrinho} alt="Carrinho de compras"/>
@@ -64,6 +69,11 @@ export default class Header extends React.Component {
             return (
                 <HeaderContainer>
                     <p onClick={this.props.paginaCarrinho}><em>AstroRockets - To the moon and back</em></p>
+                    <input
+                        placeholder="Busca por nome"
+                        value={this.props.query}
+                        onChange={this.props.onchangeQuery}
+                    />
                     <MinhaConta>
                         <img src={Usuario} alt="Botao para entrar na conta do usuário" />
                         <h4>Minha Conta</h4>
