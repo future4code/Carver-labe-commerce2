@@ -3,6 +3,7 @@ import { PaginaCarrinho, CardCompra, DescricaoProduto, IdentificaProduto, BotaoD
 import Remover from '../../icones/delete.svg'
 import CarroVazio from '../../icones/shopping-cart-180px.svg'
 
+
 export default class Carrinho extends React.Component {
   valorTotalProduto = (preco, quantidade) => {
     const total = (preco * quantidade).toFixed(2);
@@ -29,7 +30,8 @@ export default class Carrinho extends React.Component {
             <IdentificaProduto>
               <img src={produto.image} alt={produto.nome} />
               <div>
-                <p>{produto.nome}</p>
+                <p><em>{produto.nome}</em></p>
+                <p>{produto.descricao}</p>
               </div>
             </IdentificaProduto>
             <BotaoDeletar src={ Remover } alt="Botão de remover produto" onClick={() => this.props.removerProduto(produto.id)} />
@@ -79,7 +81,7 @@ export default class Carrinho extends React.Component {
       const carrinhoVazio = 
       <div>
         <img src={ CarroVazio } alt="Carrinho vazio" /> 
-        <h2>Carrinho Vazio</h2>
+        <h2>Ops... Carrinho Vazio!</h2>
         <button onClick={this.props.paginaCarrinho}>VOLTAR PARA A PÁGINA INICIAL</button>
       </div>
 
