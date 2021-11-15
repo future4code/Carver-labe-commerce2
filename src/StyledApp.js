@@ -54,7 +54,6 @@ const Promocao = styled.div`
   }
 
   @media (max-width: 800px) {
-    height: 8rem;
     width: 104.8%;
     flex-direction: column;
     img {
