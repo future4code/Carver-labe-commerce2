@@ -1,8 +1,20 @@
 import React from "react";
-import { PaginaCarrinho, CardCompra, DescricaoProduto, IdentificaProduto, BotaoDeletar, AreaQuantidade, ResumoCompra, ItensResumoCompra, TextoResumoCompra, CarrinhoVazio, BotaoLimpar } from './StyledCarrinho';
-import Remover from '../../icones/delete.svg'
-import CarroVazio from '../../icones/shopping-cart-180px.svg'
-
+import {
+  PaginaCarrinho,
+  CardCompra,
+  DescricaoProduto,
+  IdentificaProduto,
+  TextoProduto,
+  BotaoDeletar,
+  AreaQuantidade,
+  ResumoCompra,
+  ItensResumoCompra,
+  TextoResumoCompra,
+  CarrinhoVazio,
+  BotaoLimpar,
+} from "./StyledCarrinho";
+import Remover from "../../icones/delete.svg";
+import CarroVazio from "../../icones/shopping-cart-180px.svg";
 
 export default class Carrinho extends React.Component {
   valorTotalProduto = (preco, quantidade) => {
@@ -15,12 +27,18 @@ export default class Carrinho extends React.Component {
     for (let produto of listaProdutos) {
       valorTotal += produto.valor * produto.quantidade;
     }
-    return (valorTotal).toFixed(2);
+    return valorTotal.toFixed(2);
   };
 
   ofertaCompra = () => {
-    return (this.valorTotalCarrinho(this.props.carrinho)/10).toFixed(2)
-  }
+    return (this.valorTotalCarrinho(this.props.carrinho) / 10).toFixed(2);
+  };
+
+  mensagemCompra = (event) => {
+    alert(`Compra realizada com sucesso! Parabéns pela nova aquisição.`);
+    window.location.reload(false);
+    this.props.limparCarrinho();
+  };
 
   render() {
     const produtosNoCarrinho = this.props.carrinho.map((produto) => {
@@ -30,24 +48,41 @@ export default class Carrinho extends React.Component {
             <IdentificaProduto>
               <img src={produto.image} alt={produto.nome} />
               <div>
-                <p><em>{produto.nome}</em></p>
-                <p>{produto.descricao}</p>
+                <p>
+                  <em>{produto.nome}</em>
+                </p>
+                <TextoProduto>{produto.descricao}</TextoProduto>
               </div>
             </IdentificaProduto>
-            <BotaoDeletar src={ Remover } alt="Botão de remover produto" onClick={() => this.props.removerProduto(produto.id)} />
-            </DescricaoProduto>
-            <hr />
-            <DescricaoProduto>
-              <AreaQuantidade>
-                <h4>Quantidade: <button onClick={() => this.props.diminuirQuantidade(produto)}> - </button>  <span>{produto.quantidade}</span>  <button onClick={() => this.props.adicionarQuantidade(produto)}> + </button></h4>
-              </AreaQuantidade>
-              <p>¢ {this.valorTotalProduto(produto.valor, produto.quantidade)}</p>
-            </DescricaoProduto>
-          </CardCompra>
-        );
-      });
+            <BotaoDeletar
+              src={Remover}
+              alt="Botão de remover produto"
+              onClick={() => this.props.removerProduto(produto.id)}
+            />
+          </DescricaoProduto>
+          <hr />
+          <DescricaoProduto>
+            <AreaQuantidade>
+              <h4>
+                Quantidade:{" "}
+                <button onClick={() => this.props.diminuirQuantidade(produto)}>
+                  {" "}
+                  -{" "}
+                </button>{" "}
+                <span>{produto.quantidade}</span>{" "}
+                <button onClick={() => this.props.adicionarQuantidade(produto)}>
+                  {" "}
+                  +{" "}
+                </button>
+              </h4>
+            </AreaQuantidade>
+            <p>¢ {this.valorTotalProduto(produto.valor, produto.quantidade)}</p>
+          </DescricaoProduto>
+        </CardCompra>
+      );
+    });
 
-      const resumoCompra = 
+    const resumoCompra = (
       <div>
         <h2>SUA COMPRA</h2>
         <ResumoCompra>
@@ -60,30 +95,44 @@ export default class Carrinho extends React.Component {
             <p>¢ {this.valorTotalCarrinho(this.props.carrinho)}</p>
           </ItensResumoCompra>
           <ItensResumoCompra>
-          <h2>★ Frete:</h2>
-          <p>GRÁTIS</p>
+            <h2>★ Frete:</h2>
+            <p>GRÁTIS</p>
           </ItensResumoCompra>
           <ItensResumoCompra>
             <h1>★ Total:</h1>
             <h1>¢ {this.valorTotalCarrinho(this.props.carrinho)}</h1>
           </ItensResumoCompra>
           <TextoResumoCompra>
-            <p>Utilize o F4Card e pague em até 10x de ¢ {this.ofertaCompra()}</p>
+            <p>
+              Utilize o F4Card e pague em até 10x de ¢ {this.ofertaCompra()}
+            </p>
             <p>SEM JUROS!</p>
           </TextoResumoCompra>
           <div>
-            <button>FINALIZAR COMPRA</button>
-            <button onClick={this.props.paginaCarrinho}>QUERO MAIS PRODUTOS</button>
+            <button
+              onClick={() => {
+                this.mensagemCompra();
+              }}
+            >
+              FINALIZAR COMPRA
+            </button>
+            <button onClick={this.props.paginaCarrinho}>
+              QUERO MAIS PRODUTOS
+            </button>
           </div>
         </ResumoCompra>
       </div>
+    );
 
-      const carrinhoVazio = 
+    const carrinhoVazio = (
       <div>
-        <img src={ CarroVazio } alt="Carrinho vazio" /> 
+        <img src={CarroVazio} alt="Carrinho vazio" />
         <h2>Ops... Carrinho Vazio!</h2>
-        <button onClick={this.props.paginaCarrinho}>VOLTAR PARA A PÁGINA INICIAL</button>
+        <button onClick={this.props.paginaCarrinho}>
+          VOLTAR PARA A PÁGINA INICIAL
+        </button>
       </div>
+    );
 
     if (this.props.carrinho.length > 0) {
       return (
@@ -92,24 +141,24 @@ export default class Carrinho extends React.Component {
             <div>
               <div>
                 <h2>★ CARRINHO</h2>
-              </div> 
+              </div>
               {produtosNoCarrinho}
               <div>
-                <BotaoLimpar onClick={() => {this.props.limparCarrinho()}}>Limpar Carrinho</BotaoLimpar>
+                <BotaoLimpar
+                  onClick={() => {
+                    this.props.limparCarrinho();
+                  }}
+                >
+                  Limpar Carrinho
+                </BotaoLimpar>
               </div>
             </div>
-            <div>
-              { resumoCompra }
-            </div>
-          </PaginaCarrinho> 
+            <div>{resumoCompra}</div>
+          </PaginaCarrinho>
         </div>
       );
     } else {
-      return (
-        <CarrinhoVazio>
-          { carrinhoVazio }
-        </CarrinhoVazio>
-      );
+      return <CarrinhoVazio>{carrinhoVazio}</CarrinhoVazio>;
     }
   }
 }
