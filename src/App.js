@@ -168,6 +168,11 @@ export default class App extends React.Component {
     this.setState({ carrinho: [] });
   };
 
+  mensagemPromocao = () => {
+    return alert(`REGULAMENTO: 
+    - Apenas para clientes cadastrados.`)
+  }
+
   /*************************************************HOME*************************************************/
   render() {
     //Renderização dos produtos na tela principal
@@ -225,7 +230,7 @@ export default class App extends React.Component {
             query={this.state.query}
             onchangeQuery={this.onchangeQuery}
           />
-          <Promocao>
+          <Promocao onClick={() => this.mensagemPromocao()}>
             <img src={Astronauta} alt="Astronauta" />
             <div>
               <p>
@@ -257,7 +262,7 @@ export default class App extends React.Component {
                   value={this.state.order}
                   onChange={this.onchangeOrder}
                 >
-                  <option value=" "> </option>
+                  <option value=" ">Populares</option>
                   <option value={1}>Preço - Crescente</option>
                   <option value={-1}>Preço - Decrescente</option>
                 </select>
