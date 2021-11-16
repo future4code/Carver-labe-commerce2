@@ -84,7 +84,7 @@ export default class App extends React.Component {
   limparFiltro = () => {
     this.setState({
       precoMinimo: "",
-      precoMaximo: "",
+      precoMaximo: Infinity,
     });
   };
 
