@@ -112,15 +112,20 @@ const BuscarMobile = styled.div`
 `;
 
 export default class Header extends React.Component {
+  mensagemLogin = () => {
+    const mensagem  = alert("Nosso site está passando por atualizações e algumas páginas e funções estão indisponíveis neste momento.")
+    return mensagem;
+  }
+
   render() {
+
     if (this.props.paginaProdutos) {
       return (
         <div>
           <HeaderContainer>
             <p>
               <em>
-                <span>AstroRockets</span> - To the moon and back
-              </em>
+                <span>AstroRockets</span></em> - To the moon and back          
             </p>
             <BuscarItens>
               <input
@@ -154,8 +159,7 @@ export default class Header extends React.Component {
         <HeaderContainer>
           <p onClick={this.props.paginaCarrinho}>
             <em>
-              <span>AstroRockets</span> - To the moon and back
-            </em>
+              <span>AstroRockets</span></em> - To the moon and back
           </p>
           <BuscarItens>
             <input
@@ -165,7 +169,7 @@ export default class Header extends React.Component {
             />
             <img src={Pesquisa} alt="Ícone de pesquisa" />
           </BuscarItens>
-          <MinhaConta>
+          <MinhaConta onClick={() => this.mensagemLogin()}>
             <img src={Usuario} alt="Botao para entrar na conta do usuário" />
             <h4>Minha Conta</h4>
           </MinhaConta>

@@ -28,7 +28,7 @@ const ProductContainer = styled.div`
     margin: 5%;
 
     h3 {
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       padding: 0;
     }
 
