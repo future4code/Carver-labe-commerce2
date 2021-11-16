@@ -1,6 +1,6 @@
 # Seja bem-vindo ao AstroRockets
 
-Somos uma loja especializada na venda de naves, ônibus e foguetes espaciais, e você poderá [acessar a AstroRockets aqui](http://astro-rockets.surge.sh/).
+Somos uma loja especializada na venda de naves, ônibus e foguetes espaciais, e você poderá [acessar ao AstroRockets aqui](http://astro-rockets.surge.sh/).
 
 ### Desenvolvedoras:
  - Luiza - página produtos e estilização.
