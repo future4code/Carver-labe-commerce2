@@ -159,8 +159,7 @@ export default class Header extends React.Component {
         <HeaderContainer>
           <p onClick={this.props.paginaCarrinho}>
             <em>
-              <span>AstroRockets</span> - To the moon and back
-            </em>
+              <span>AstroRockets</span></em> - To the moon and back
           </p>
           <BuscarItens>
             <input
