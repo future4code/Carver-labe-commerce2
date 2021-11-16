@@ -15,9 +15,9 @@ export const produtos = [
   {
     id: 1,
     nome: "Foguete Single",
-    valor: Number(25.00).toFixed(2),
+    valor: Number(25.0).toFixed(2),
     image: FogueteSingle,
-    descricao: "É ideal para o transporte de apenas um passageiro. Econômico e veloz",
+    descricao:"É ideal para o transporte de apenas um passageiro. Econômico e veloz",
   },
   {
     id: 2,

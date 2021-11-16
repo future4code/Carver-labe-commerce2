@@ -1,5 +1,11 @@
 import React from "react";
-import styled, { createGlobalStyle } from "styled-components";
+import {
+  GlobalStyle,
+  Promocao,
+  LayoutHome,
+  Ordenacao,
+  TelaProdutos,
+} from "./StyledApp";
 import { produtos } from "./components/Produto/Produto";
 import Carrinho from "./components/Carrinho/Carrinho";
 import CardProduto from "./components/Produto/CardProduto";
@@ -7,20 +13,7 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Filtro from "./components/Filtro/Filtro";
 
-const GlobalStyle = createGlobalStyle`
-    *{
-      margin: 0;
-      padding: 0;
-      font-family: 'Franklin Gothic Medium', sans-serif;
-      color: #082032;
-    }
-`;
-
-const TelaProdutos = styled.div`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-`;
+import Astronauta from "./icones/astronaut.png";
 
 export default class App extends React.Component {
   state = {
@@ -33,8 +26,8 @@ export default class App extends React.Component {
     sortingParameter: "crescente",
     order: 1,
   };
-  
-  /***************************************************LOCAL STORAGE***************************************************/
+
+  /***********************************************LOCAL STORAGE***********************************************/
   componentDidUpdate() {
     localStorage.setItem("carrinho", JSON.stringify(this.state.carrinho));
   }
@@ -46,7 +39,7 @@ export default class App extends React.Component {
     }
   }
 
-  /*****************************************************FILTROS*****************************************************/
+  /*************************************************FILTROS*************************************************/
   onchangeQuery = (event) => {
     this.setState({
       query: event.target.value,
@@ -58,7 +51,9 @@ export default class App extends React.Component {
       precoMinimo: event.target.value,
     });
   };
+
   onchangePrecoMaximo = (event) => {
+
     if (event.target.value !== "") {
       this.setState({
         precoMaximo: event.target.value,
@@ -79,13 +74,21 @@ export default class App extends React.Component {
       order: event.target.value,
     });
   };
+  
   onchangeOrder = (event) => {
     this.setState({
       order: event.target.value,
     });
   };
 
-  /*****************************************************CARRINHO*****************************************************/
+  limparFiltro = () => {
+    this.setState({
+      precoMinimo: "",
+      precoMaximo: "",
+    });
+  };
+
+  /*************************************************CARRINHO*************************************************/
   // Funções para trocar de página
   paginaCarrinho = () => {
     this.setState({ pagina: !this.state.pagina });
@@ -165,22 +168,22 @@ export default class App extends React.Component {
     this.setState({ carrinho: [] });
   };
 
-  /*****************************************************HOME*****************************************************/
+  /*************************************************HOME*************************************************/
   render() {
     //Renderização dos produtos na tela principal
     const exibirProdutos = this.state.produtos
-      .filter(produto => {
+      .filter((produto) => {
         return produto.nome
           .toLowerCase()
           .includes(this.state.query.toLowerCase());
       })
-      .filter(produto => {
+      .filter((produto) => {
         return (
           Number(this.state.precoMinimo) === "" ||
           produto.valor >= Number(this.state.precoMinimo)
         );
       })
-      .filter(produto => {
+      .filter((produto) => {
         return (
           Number(this.state.precoMaximo) === "" ||
           produto.valor <= Number(this.state.precoMaximo)
@@ -193,6 +196,7 @@ export default class App extends React.Component {
           case "decrescente":
             return this.state.order * (b.valor - a.valor);
           default:
+            return " ";
         }
       })
       .map((produto) => {
@@ -221,19 +225,46 @@ export default class App extends React.Component {
             query={this.state.query}
             onchangeQuery={this.onchangeQuery}
           />
-          <div>
-            <Filtro
-              onchangePrecoMinimo={this.onchangePrecoMinimo}
-              onchangePrecoMaximo={this.onchangePrecoMaximo}
-              onchangeSortingParameter={this.onchangeSortingParameter}
-              onchangeOrder={this.onchangeOrder}
-              precoMinimo={this.state.precoMinimo}
-              precoMaximo={this.state.precoMaximo}
-              sortingParameter={this.state.sortingParameter}
-              order={this.state.order}
-            />
-          </div>
-          <TelaProdutos>{exibirProdutos}</TelaProdutos>
+          <Promocao>
+            <img src={Astronauta} alt="Astronauta" />
+            <div>
+              <p>
+                {" "}
+                NAS COMPRAS ACIMA DE 100.00 ASTROLETAS LEVE UM TRAJE ESPECIAL.
+              </p>
+              <p>*Consulte no regulamento.</p>
+            </div>
+          </Promocao>
+          <LayoutHome>
+            <div>
+              <Filtro
+                onchangePrecoMinimo={this.onchangePrecoMinimo}
+                onchangePrecoMaximo={this.onchangePrecoMaximo}
+                onchangeSortingParameter={this.onchangeSortingParameter}
+                onchangeOrder={this.onchangeOrder}
+                precoMinimo={this.state.precoMinimo}
+                precoMaximo={this.state.precoMaximo}
+                sortingParameter={this.state.sortingParameter}
+                order={this.state.order}
+                limparFiltro={this.limparFiltro}
+              />
+            </div>
+            <div>
+              <Ordenacao>
+                <label for="order">Ordenar:</label>
+                <select
+                  name="order"
+                  value={this.state.order}
+                  onChange={this.onchangeOrder}
+                >
+                  <option value=" "> </option>
+                  <option value={1}>Preço - Crescente</option>
+                  <option value={-1}>Preço - Decrescente</option>
+                </select>
+              </Ordenacao>
+              <TelaProdutos>{exibirProdutos}</TelaProdutos>
+            </div>
+          </LayoutHome>
           <Footer />
         </div>
       );
