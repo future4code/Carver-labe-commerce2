@@ -29,7 +29,7 @@ export default class App extends React.Component {
     pagina: true,
     query: "",
     precoMinimo: "",
-    precoMaximo: "",
+    precoMaximo: Infinity,
     sortingParameter: "crescente",
     order: 1,
   };
@@ -59,10 +59,21 @@ export default class App extends React.Component {
     });
   };
   onchangePrecoMaximo = (event) => {
-    this.setState({
-      precoMaximo: event.target.value,
-    });
-  };
+    if (event.target.value !== "") {
+      this.setState({
+        precoMaximo: event.target.value,
+      })
+    }else{
+      this.setState({
+        precoMaximo: Infinity
+    })
+    /*;
+    if (event.target.value === "") {
+      this.precoMaximo.value = Infinity
+      
+    }*/
+
+  }};
   onchangeSortingParameter = (event) => {
     this.setState({
       order: event.target.value,
@@ -165,14 +176,14 @@ export default class App extends React.Component {
       })
       .filter(produto => {
         return (
-          this.state.precoMinimo === "" ||
-          produto.valor >= this.state.precoMinimo
+          Number(this.state.precoMinimo) === "" ||
+          produto.valor >= Number(this.state.precoMinimo)
         );
       })
       .filter(produto => {
         return (
-          this.state.precoMaximo === "" ||
-          produto.valor <= this.state.precoMaximo
+          Number(this.state.precoMaximo) === "" ||
+          produto.valor <= Number(this.state.precoMaximo)
         );
       })
       .sort((a, b) => {
